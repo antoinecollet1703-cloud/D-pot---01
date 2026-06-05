@@ -1,136 +1,155 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qui sommes-nous ?</title>
-    <style>
-        /* Styles globaux et remise à zéro */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos de moi</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+      font-family: sans-serif;
+      background: #f0f2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        /* Conteneur principal de la présentation */
-        .presentation-container {
-            display: flex;
-            background-color: #ffffff;
-            max-width: 900px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
+    .outer {
+      max-width: 720px;
+      width: 100%;
+      padding: 1rem;
+    }
 
-        /* Section Gauche : La Photo */
-        .photo-side {
-            flex: 1;
-            background-color: #e2e8f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 400px;
-            position: relative;
-        }
+    /* Bouton violet hors carte, aligné à droite */
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
 
-        /* L'image elle-même */
-        .photo-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Permet à l'image de bien remplir l'espace sans se déformer */
-        }
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      background: #7c5cbf;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-contact:hover { background: #6647aa; }
+    .btn-contact:active { transform: scale(0.98); }
 
-        /* Emplacement réservé (si pas d'image) */
-        .placeholder-text {
-            color: #64748b;
-            font-weight: 600;
-            text-align: center;
-            padding: 20px;
-        }
+    /* Carte principale */
+    .card-wrapper {
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e0e3eb;
+      min-height: 340px;
+      background: #fff;
+    }
 
-        /* Section Droite : Le Texte */
-        .text-side {
-            flex: 1.2; /* Donne un peu plus d'espace au texte qu'à la photo */
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    /* Panneau gauche (photo) */
+    .photo-panel {
+      width: 42%;
+      background: #fff;
+      border-right: 1px solid #e0e3eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 2rem;
+    }
 
-        .text-side h1 {
-            font-size: 2rem;
-            color: #1e293b;
-            margin-bottom: 20px;
-            position: relative;
-        }
+    .photo-frame {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1.5px dashed #c0c5d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c0c5d0;
+      font-size: 36px;
+    }
 
-        /* Petite ligne décorative sous le titre */
-        .text-side h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #3b82f6; /* Couleur bleue */
-            border-radius: 2px;
-            margin-top: 8px;
-        }
+    .photo-caption { font-size: 12px; color: #aaa; }
 
-        .text-side p {
-            font-size: 1.05rem;
-            color: #475569;
-            margin-bottom: 15px;
-        }
+    /* Panneau droit (texte) */
+    .text-panel {
+      width: 58%;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      background: #fff;
+    }
 
-        /* Adaptabilité pour les écrans de smartphones */
-        @media (max-width: 768px) {
-            .presentation-container {
-                flex-direction: column; /* Aligne la photo et le texte verticalement */
-            }
+    .panel-title { font-size: 26px; font-weight: 500; color: #1a2340; }
+    .title-underline { width: 48px; height: 3px; background: #3a7bd5; border-radius: 2px; }
+    .panel-body { font-size: 15px; color: #555; line-height: 1.7; }
 
-            .photo-side {
-                min-height: 250px;
-            }
+    /* Encadré infos */
+    .info-block {
+      border: 1px solid #e0e3eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-            .text-side {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    .info-row { display: flex; gap: 10px; align-items: center; font-size: 14px; color: #555; }
+    .info-label { font-weight: 500; color: #1a2340; min-width: 80px; }
+  </style>
 </head>
 <body>
 
-    <div class="presentation-container">
-        
-        <!-- CÔTÉ GAUCHE : LA PHOTO -->
-        <div class="photo-side">
-            <!-- 
-              Remplacez "votre-photo.jpg" par le lien ou le nom réel de votre image.
-              Si l'image n'est pas trouvée, le texte "Emplacement Photo" s'affichera à la place.
-            -->
-            <img src="votre-photo.jpg" alt="Emplacement Photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="placeholder-text" style="display: none;">[ Cadre Photo ]</div>
-        </div>
+  <div class="outer">
 
-        <!-- CÔTÉ DROIT : LE TEXTE -->
-        <div class="text-side">
-            <h1>À propos de moi</h1>
-            <p>Bonjour voici ma page de présentation</p>
+    <!-- Bouton hors carte -->
+    <div class="btn-row">
+      <button class="btn-contact">✉ Me contacter</button>
+    </div>
+
+    <!-- Carte -->
+    <div class="card-wrapper">
+
+      <div class="photo-panel">
+        <div class="photo-frame">👤</div>
+        <p class="photo-caption">[ Cadre Photo ]</p>
+      </div>
+
+      <div class="text-panel">
+        <h1 class="panel-title">À propos de moi</h1>
+        <div class="title-underline"></div>
+        <p class="panel-body">Bonjour, voici ma page de présentation. Ajoutez ici un texte décrivant votre parcours, vos passions ou vos compétences.</p>
+
+        <div class="info-block">
+          <div class="info-row">
+            <span>📍</span><span class="info-label">Ville :</span><span>Paris, France</span>
+          </div>
+          <div class="info-row">
+            <span>💼</span><span class="info-label">Métier :</span><span>Développeur web</span>
+          </div>
+          <div class="info-row">
+            <span>✉️</span><span class="info-label">Email :</span>
+            <span style="color:#3a7bd5;">contact@monsite.fr</span>
+          </div>
         </div>
+      </div>
 
     </div>
+  </div>
 
 </body>
 </html>
