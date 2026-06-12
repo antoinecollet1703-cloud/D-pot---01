@@ -1,155 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos de moi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos – Galerie Brooklyn</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,700;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
     body {
-      font-family: sans-serif;
-      background: #f0f2f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Inter', sans-serif;
+      background: #fff; color: #111;
       min-height: 100vh;
+      display: flex; flex-direction: column;
     }
 
-    .outer {
-      max-width: 720px;
-      width: 100%;
-      padding: 1rem;
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem; border-bottom: 1px solid #ddd;
+    }
+    .nav-title { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2.5rem; margin-left: auto; }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #111; }
+
+    .content { padding: 3rem 3rem 4rem; flex: 1; display: flex; flex-direction: column; }
+    .label { font-size: 13px; font-weight: 700; margin-bottom: 1rem; }
+
+    .page-title {
+      font-family: 'EB Garamond', serif; font-size: 56px; font-weight: 700; font-style: italic;
+      border-bottom: 2px solid #111; padding-bottom: 0.4rem; display: inline-block; line-height: 1.1;
+    }
+    .page-subtitle {
+      font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic; font-weight: 700;
+      margin: 0.75rem 0 2.5rem;
     }
 
-    /* Bouton violet hors carte, aligné à droite */
-    .btn-row {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 12px;
+    .card { display: flex; border: 1px solid #ddd; flex: 1; }
+
+    .card-left {
+      flex: 0 0 35%; background: #d8dce6;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 4rem 2rem; gap: 1rem; border-right: 1px solid #ddd;
     }
-
-    .btn-contact {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 9px 18px;
-      background: #7c5cbf;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.15s;
+    .avatar {
+      width: 140px; height: 140px; border-radius: 50%;
+      border: 1.5px dashed #9aa; background: #fff;
+      display: flex; align-items: center; justify-content: center;
     }
-    .btn-contact:hover { background: #6647aa; }
-    .btn-contact:active { transform: scale(0.98); }
+    .avatar i { font-size: 56px; color: #555; }
+    .photo-label { font-size: 12px; color: #888; letter-spacing: 0.05em; }
 
-    /* Carte principale */
-    .card-wrapper {
-      display: flex;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #e0e3eb;
-      min-height: 340px;
-      background: #fff;
+    .card-right {
+      flex: 1; padding: 3rem;
+      display: flex; flex-direction: column; justify-content: center;
     }
-
-    /* Panneau gauche (photo) */
-    .photo-panel {
-      width: 42%;
-      background: #fff;
-      border-right: 1px solid #e0e3eb;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 2rem;
+    .card-right h2 {
+      font-family: 'EB Garamond', serif; font-size: 40px; font-weight: 700; font-style: italic;
+      border-bottom: 2px solid #111; padding-bottom: 0.3rem; display: inline-block; margin-bottom: 8px;
     }
+    .bio { font-size: 15px; color: #333; line-height: 1.8; margin: 1.25rem 0 2rem; max-width: 600px; }
 
-    .photo-frame {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 1.5px dashed #c0c5d0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #c0c5d0;
-      font-size: 36px;
+    .fields { border: 1px solid #ddd; display: flex; flex-direction: column; max-width: 500px; }
+    .field { display: flex; align-items: center; padding: 11px 16px; gap: 14px; border-bottom: 1px solid #eee; font-size: 14px; }
+    .field:last-child { border-bottom: none; }
+    .field i { font-size: 17px; color: #666; }
+    .field-label { color: #888; min-width: 72px; font-weight: 500; }
+    .field-val.email { text-decoration: underline; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 2rem; background: #111; color: #fff; border: none;
+      padding: 12px 24px; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
     }
-
-    .photo-caption { font-size: 12px; color: #aaa; }
-
-    /* Panneau droit (texte) */
-    .text-panel {
-      width: 58%;
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-      background: #fff;
-    }
-
-    .panel-title { font-size: 26px; font-weight: 500; color: #1a2340; }
-    .title-underline { width: 48px; height: 3px; background: #3a7bd5; border-radius: 2px; }
-    .panel-body { font-size: 15px; color: #555; line-height: 1.7; }
-
-    /* Encadré infos */
-    .info-block {
-      border: 1px solid #e0e3eb;
-      border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .info-row { display: flex; gap: 10px; align-items: center; font-size: 14px; color: #555; }
-    .info-label { font-weight: 500; color: #1a2340; min-width: 80px; }
   </style>
 </head>
 <body>
 
-  <div class="outer">
+<nav>
+  <span class="nav-title">Site : Galerie Brooklyn</span>
+  <div class="nav-links">
+    <a href="#">Expositions</a>
+    <a href="#">Opportunités</a>
+    <a href="#">Contact</a>
+    <a href="#">Presse</a>
+  </div>
+</nav>
 
-    <!-- Bouton hors carte -->
-    <div class="btn-row">
-      <button class="btn-contact">✉ Me contacter</button>
+<div class="content">
+   <div class="page-title">À propos de moi</div>
+  <p class="page-subtitle">Une page de présentation</p>
+
+  <div class="card">
+    <div class="card-left">
+      <div class="avatar"><i class="ti ti-user"></i></div>
+      <span class="photo-label">[ Cadre Photo ]</span>
     </div>
-
-    <!-- Carte -->
-    <div class="card-wrapper">
-
-      <div class="photo-panel">
-        <div class="photo-frame">👤</div>
-        <p class="photo-caption">[ Cadre Photo ]</p>
-      </div>
-
-      <div class="text-panel">
-        <h1 class="panel-title">À propos de moi</h1>
-        <div class="title-underline"></div>
-        <p class="panel-body">Bonjour, voici ma page de présentation. Ajoutez ici un texte décrivant votre parcours, vos passions ou vos compétences.</p>
-
-        <div class="info-block">
-          <div class="info-row">
-            <span>📍</span><span class="info-label">Ville :</span><span>Paris, France</span>
-          </div>
-          <div class="info-row">
-            <span>💼</span><span class="info-label">Métier :</span><span>Développeur web</span>
-          </div>
-          <div class="info-row">
-            <span>✉️</span><span class="info-label">Email :</span>
-            <span style="color:#3a7bd5;">contact@monsite.fr</span>
-          </div>
+    <div class="card-right">
+      <h2>À propos de moi</h2>
+      <p class="bio">Bonjour, voici ma page de présentation. Ajoutez ici un texte décrivant votre parcours, vos passions ou vos compétences.</p>
+      <div class="fields">
+        <div class="field">
+          <i class="ti ti-map-pin"></i>
+          <span class="field-label">Ville :</span>
+          <span class="field-val">Paris, France</span>
+        </div>
+        <div class="field">
+          <i class="ti ti-briefcase"></i>
+          <span class="field-label">Métier :</span>
+          <span class="field-val">Développeur web</span>
+        </div>
+        <div class="field">
+          <i class="ti ti-mail"></i>
+          <span class="field-label">Email :</span>
+          <span class="field-val email">contact@monsite.fr</span>
         </div>
       </div>
-
+      <button class="btn"><i class="ti ti-mail"></i> Me contacter</button>
     </div>
   </div>
+</div>
 
 </body>
 </html>
